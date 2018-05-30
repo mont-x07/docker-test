@@ -1,0 +1,21 @@
+version: '3'
+services:
+    backend:
+        build: ./dockerfiles/backend
+        restart: always
+        env_file:
+            - ./dockerfiles/backend/env
+        expose:
+             - '8080'
+        networks:
+            - realworld
+    frontend:
+        build: ./dockerfiles/frontend
+        restart: always
+        ports:
+            - '80:4100'
+        networks:
+            - realworld
+
+networks:
+    realworld:
